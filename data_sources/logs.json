@@ -1,0 +1,30 @@
+[
+    {
+      "event_id": "evt_991",
+      "partner_code": "M-8831",
+      "campaign": "Spring Flyer 2026",
+      "budget": 450.00,
+      "timestamp": "2026-06-02 10:15:00"
+    },
+    {
+      "event_id": "evt_992",
+      "partner_code": "M-8831",
+      "campaign": "Facebook Local Ad",
+      "budget": 120.00,
+      "timestamp": "2026-06-02 11:30:00"
+    },
+    {
+      "event_id": "evt_993",
+      "partner_code": "M-9942",
+      "campaign": "Google Maps Optimization",
+      "budget": 75.50,
+      "timestamp": "2026-06-02 14:22:15"
+    },
+    {
+      "event_id": "evt_994",
+      "partner_code": null,
+      "campaign": "Anonymous Click Event",
+      "budget": 0.00,
+      "timestamp": "2026-06-02 16:45:00"
+    }
+  ]
