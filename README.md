@@ -1,70 +1,53 @@
-# Practice Master Data Pipeline
+# PySQL-Flow: Modular ELT Pipeline
 
-A modular data pipeline designed to extract data from various sources, load it into a central SQLite database, and perform transformations using native SQL scripts.
+PySQL-Flow is a native Python and SQL modular ELT (Extract, Load, Transform) framework designed to unify heterogeneous data sources into a centralized SQLite data warehouse. It prioritizes decoupled logic, idempotency, and resilient data processing.
 
-## Project Structure
+## 🚀 Key Features
+
+*   **Modular Architecture:** Decoupled extraction and transformation layers for independent scaling and maintenance.
+*   **Multi-Source Ingestion:** Seamlessly unifies structured CSVs, semi-structured JSON logs, and REST API payloads.
+*   **Standardized ELT Pattern:** Implements a strict Extract-Load-Transform workflow to maintain full data lineage.
+*   **Native SQL Transformations:** Leverages robust SQL scripts for data cleansing, normalization, and staging.
+*   **Resilient Design:** Built-in validation and error handling for file paths, API connectivity, and SQL execution.
+
+## 🛠️ Tech Stack
+
+*   **Language:** Python 3.x
+*   **Data Manipulation:** Pandas
+*   **Database:** SQLite
+*   **API Ingestion:** Requests
+*   **Orchestration:** Modular Python scripts
+
+## 📁 Project Structure
 
 ```text
-/practise_master_pipeline/
-├── main.py                 # Entry point of the pipeline
+├── data_sources/           # Raw CSV and JSON data files
 ├── pipeline/
-│   ├── extract.py          # Extraction logic (CSV, JSON, API)
-│   └── tranform.py         # Transformation execution logic
+│   ├── extract.py          # Extraction logic for CSV, JSON, and APIs
+│   └── transform.py        # SQL execution engine
 ├── scripts/
-│   └── 01_stage_vault.sql  # SQL transformation script
-├── data_sources/
-│   ├── partners.csv        # Sample partner data
-│   └── logs.json           # Sample log data
-├── requirements.txt        # Python dependencies
-└── database.db             # SQLite database (generated at runtime)
+│   └── 01_stage_vault.sql  # Native SQL transformation routines
+├── main.py                 # Pipeline entry point and orchestrator
+└── requirements.txt        # Project dependencies
 ```
 
-## Features
+## ⚙️ Getting Started
 
-- **Multi-source Extraction**: Seamlessly handles data from CSV files, JSON files, and REST APIs.
-- **SQLite Integration**: Uses SQLite as a local data warehouse for staging and processing.
-- **SQL-based Transformations**: Executes native SQL scripts for cleaning and hashing, keeping data logic separate from application code.
-- **Automated Workflow**: Orchestrates the entire ETL process from raw data to staged tables.
+1.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## Getting Started
+2.  **Run the Pipeline:**
+    ```bash
+    python main.py
+    ```
 
-### Prerequisites
+## 🔄 Workflow
 
-- Python 3.x
-- `pip` (Python package manager)
+1.  **Extraction:** Data is pulled from local files (CSV, JSON) and remote REST APIs.
+2.  **Loading:** Raw data is loaded into `src_` prefix tables in the SQLite database, ensuring a "clean slate" on every run.
+3.  **Transformation:** Native SQL scripts are executed to normalize data, handle nulls, and prepare the data for downstream analysis.
 
-### Installation
-
-1. Clone the repository or download the project files.
-2. Install the required Python libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Running the Pipeline
-
-Execute the main script to start the pipeline:
-
-```bash
-python main.py
-```
-
-## Workflow Overview
-
-1. **Phase 1: Extraction**
-   - Extracts partner data from `data_sources/partners.csv`.
-   - Extracts log data from `data_sources/logs.json`.
-   - Fetches sample post data from an external API (JSONPlaceholder).
-   - Loads all raw data into `src_` prefixed tables.
-
-2. **Phase 2: Transformation**
-   - Runs `scripts/01_stage_vault.sql`.
-   - Cleans the raw data (trimming, case normalization).
-   - Generates unique hashes for records.
-   - Loads the processed data into staging tables like `STG_PARTNERS`.
-
-## Dependencies
-
-- `pandas`: For data manipulation and loading to SQLite.
-- `requests`: For API data extraction.
-- `sqlite3`: Standard library for database interaction.
+---
+*Developed with a focus on clean code and data integrity.*
